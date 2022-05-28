@@ -15,6 +15,7 @@
   <meta property="og:image" content="https://teth-main.github.io/BoobFuncGenerator/img/card.png" />
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" type="text/css" href="./style.css">
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVN8NBDB9L"></script>
@@ -37,10 +38,11 @@
   <div class="container">
     <h3>おっぱい関数</h3>
     <p>
-      おっぱい関数は、「おっぱい型の関数」のことであり、理系学生の<b style="color: #ff4040;">夢</b>である。<strong>おっぱい関数ジェネレーター</strong>はそんな理系学生の夢をかなえるサイトである。
+      おっぱい関数は、「おっぱい型の関数」のことであり、理系学生の<b style="color: #ff4040;">夢</b>である。<strong>おっぱい関数ジェネレーター</strong>はそんな理系学生の夢を叶えるサイトである。
       <br>
       下のDesmosグラフ計算機を操作して、お好みのおっぱい関数を作ってください。作った後 [Genarate] を押すことで、おっぱい関数画像が生成されます。 [Save Image] を押して、<b>記念におっぱい関数をお持ち帰りください。</b>
     </p>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="自由に弄れ、持ち帰ることができる「おっぱい関数ジェネレーター」" data-hashtags="おっぱい関数ジェネレーター" data-related="TETH_Main,TETH_function" data-size="large" data-show-count="false">Tweet</a>
   </div>
   <div class="container">
     <div id="calculator"></div>
@@ -140,10 +142,10 @@
         {"type":"expression","id":"51","color":"#c74440","latex":"l_{1}=\\operatorname{round}\\left(\\arctan\\left(A.y,A.x\\right),3\\right)"},
         {"type":"expression","id":"52","color":"#2d70b3","latex":"l_{2}=\\operatorname{round}\\left(\\frac{P}{20},3\\right)"},
         {"type":"expression","id":"53","color":"#388c46","latex":"l_{3}=\\operatorname{round}\\left(\\left\\{o_{pn}=5:\\frac{P}{150},\\frac{P}{100}\\right\\},3\\right)"},
-        {"type":"expression","id":"54","color":"#6042a6","latex":"l_{4}=.05n_{ipple}"},
+        {"type":"expression","id":"54","color":"#6042a6","latex":"l_{4}=\\operatorname{round}\\left(.05n_{ipple},3\\right)"},
         {"type":"expression","id":"55","color":"#000000","latex":"l_{5}=\\operatorname{round}\\left(\\left\\{o_{pn}=1:\\frac{15}{.5P+10},o_{pn}=2:\\frac{10}{.25P+10},o_{pn}=3:\\frac{10}{.5P+10},o_{pn}=4:\\frac{15}{.25P+15},o_{pn}=5:\\frac{15}{.2P+15},o_{pn}=6:\\frac{15}{.3P+15}\\right\\}\\cdot\\left(15+P\\right),3\\right)"},
         {"type":"expression","id":"56","color":"#388c46","latex":"l_{6}=\\operatorname{round}\\left(\\left\\{o_{pn}=1:\\frac{P}{100},o_{pn}=2:\\frac{P}{200},o_{pn}=3:-.4+\\frac{P}{100},o_{pn}=4:-.4+\\frac{P}{100},o_{pn}=5:0,o_{pn}=6:\\frac{7\\sqrt{P}+20}{60}\\right\\},3\\right)"},
-        {"type":"expression","id":"57","color":"#6042a6","latex":"l_{7}=.05a_{reola}"},
+        {"type":"expression","id":"57","color":"#6042a6","latex":"l_{7}=\\operatorname{round}\\left(.05a_{reola},3\\right)"},
         {"type":"expression","id":"58","color":"#000000","latex":"l_{8}=\\operatorname{round}\\left(\\left\\{o_{pn}=1:\\frac{10}{.5P+10},o_{pn}=2:\\frac{10}{.5P+10},o_{pn}=3:\\frac{10}{.5P+10},o_{pn}=4:\\frac{20}{.5P+20},o_{pn}=5:\\frac{15}{.5P+15},o_{pn}=6:\\frac{15}{.5P+15}\\right\\}\\cdot\\left(8+.5P\\right),3\\right)"},
         {"type":"expression","id":"59","color":"#c74440","latex":"l_{9}=\\operatorname{round}\\left(\\left\\{o_{pn}=2:\\frac{P}{120},o_{pn}=3:\\frac{P}{60},o_{pn}=4:\\frac{P}{60},o_{pn}=5:\\frac{P}{120},o_{pn}=6:\\frac{P}{30}\\right\\},3\\right)"},
         {"type":"expression","id":"60","color":"#388c46","latex":"l_{10}=\\operatorname{round}\\left(\\left\\{o_{pn}=2:\\frac{P}{200},o_{pn}=3:-.4+\\frac{P}{100},o_{pn}=4:-.4+\\frac{P}{100},o_{pn}=5:0,o_{pn}=6:.86+\\frac{P}{100}\\right\\},3\\right)"},
@@ -269,34 +271,35 @@
       if(lockVal[4] != 0) labSize -= 0.15;
       if(lockVal[7] != 0) labSize -= 0.15;
 
-      expr += "r="+ gx + mx + lx + hx + ax;
+      expr += "r="+ gx + mx + lx;
+      let op = hx + ax;
       if(lockVal[2] > 0) { // P > 0
         switch(typeVal) {
           case 2:
             var buf1 = Math.round((lockVal[10] + 1/6)*1000)/1000;
             var buf2 = Math.round((lockVal[10] + 1/2)*1000)/1000;
-            expr += "+"+lockVal[9]*6+"\\frac{\\theta+"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{3}{4}}";
+            op += "+"+lockVal[9]*6+"\\frac{\\theta+"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{3}{4}}";
             labSize -= 0.25;
             break;
           case 3:
             var buf1 = lockVal[10] === 0 ? "\\theta" : "\\left(\\theta"+lockVal[10]+"\\right)";
             var buf2 = lockVal[10] === 0 ? "\\theta" : "\\theta"+lockVal[10];
-            expr += "+\\frac{"+lockVal[9]+"}{2"+buf1+"+e^{2\\left("+buf2+"+2\\left|"+buf2+"\\right|\\right)}}";
+            op += "+\\frac{"+lockVal[9]+"}{2"+buf1+"+e^{2\\left("+buf2+"+2\\left|"+buf2+"\\right|\\right)}}";
             labSize -= 0.375;
             break;
           case 4:
             var buf1 = Math.round((lockVal[10] + 1/3)*1000)/1000;
             var buf2 = Math.round((lockVal[10] + 1/2)*1000)/1000;
-            expr += "+"+lockVal[9]*3+"\\frac{\\left(\\theta+"+buf1+"\\right)}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{11}{4}}";
+            op += "+"+lockVal[9]*3+"\\frac{\\left(\\theta+"+buf1+"\\right)}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{11}{4}}";
             labSize -= 0.35;
             break;
           case 5:
-            expr += "+"+lockVal[9]+"e^{-10\\theta^{2}}";
+            op += "+"+lockVal[9]+"e^{-10\\theta^{2}}";
             break;
           case 6:
             var buf1 = 2*lockVal[9];
             var buf2 = lockVal[10]+.44;
-            expr += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+3*lockVal[10]+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
+            op += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+3*lockVal[10]+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
             labSize -= 0.5;
             break;
         }
@@ -371,19 +374,34 @@
 
       if(imgFlg) var buf1 = '\\left(0,-720\\right)';
       else {
-        var buf1 = '\\left(520,0\\right)';
-        labSize -= 0.5;
+        var buf1 = '\\left(-800,200\\right)';
+        var buf2 = '\\left(1800,0\\right)';
+        labSize += 0.25;
       }
       calculator.setExpression({
-        id: 'label',
+        id: 'label1',
         latex: buf1,
         color: 'black',
-        label: '`' + expr + '`',
+        label: '`' + (imgFlg ? expr + op : expr) + '`',
         hidden: true,
         showLabel: true,
         secret: true,
-        labelSize: '0' + labSize
+        labelSize: '0' + labSize,
+        labelOrientation: (imgFlg ? 'default' : 'right')
       });
+      if(!imgFlg) {
+        calculator.setExpression({
+          id: 'label2',
+          latex: buf2,
+          color: 'black',
+          label: '`' + op + '`',
+          hidden: true,
+          showLabel: true,
+          secret: true,
+          labelSize: '0' + labSize + (typeVal === 6 ? -0.25 : 0),
+          labelOrientation: 'left'
+        });
+      }
 
       if(imgFlg) var buf2 = '\\left(0,-900\\right)';
       else var buf2 = '\\left(520,-200\\right)';
@@ -406,7 +424,8 @@
       }, function(s) {
         mergeImg.src = s;
         calculator.removeExpression({id: 'background'});
-        calculator.removeExpression({id: 'label'});
+        calculator.removeExpression({id: 'label1'});
+        calculator.removeExpression({id: 'label2'});
         calculator.removeExpression({id: 'domain'});
         calculator.setExpression({id: S_oppId, lineWidth: 2.5});
         scrollTo(pageX, pageY);
