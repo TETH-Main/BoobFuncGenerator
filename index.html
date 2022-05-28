@@ -266,7 +266,7 @@
       else var buf = ""+lockVal[6];
       let hx = lockVal[4] === 0 ? "" : ("+"+lockVal[4]+"e^{-\\left("+ lockVal[5] + (lockVal[6] === 0 ? "\\theta" : "\\left(\\theta"+buf+"\\right)") + "\\right)^{4}}");
       let ax = lockVal[7] === 0 ? "" : ("+"+lockVal[7]+"e^{-\\left("+ lockVal[8] + (lockVal[6] === 0 ? "\\theta" : "\\left(\\theta"+buf+"\\right)") + "\\right)^{6}}");
-      let labSize = 2.5;
+      let labSize = 2.4;
       if(lockVal[0] != 0) labSize -= 0.15;
       if(lockVal[4] != 0) labSize -= 0.15;
       if(lockVal[7] != 0) labSize -= 0.15;
@@ -285,7 +285,7 @@
             var buf1 = lockVal[10] === 0 ? "\\theta" : "\\left(\\theta"+lockVal[10]+"\\right)";
             var buf2 = lockVal[10] === 0 ? "\\theta" : "\\theta"+lockVal[10];
             op += "+\\frac{"+lockVal[9]+"}{2"+buf1+"+e^{2\\left("+buf2+"+2\\left|"+buf2+"\\right|\\right)}}";
-            labSize -= 0.375;
+            labSize -= 0.4;
             break;
           case 4:
             var buf1 = Math.round((lockVal[10] + 1/3)*1000)/1000;
@@ -297,8 +297,8 @@
             op += "+"+lockVal[9]+"e^{-10\\theta^{2}}";
             break;
           case 6:
-            var buf1 = 2*lockVal[9];
-            var buf2 = lockVal[10]+.44;
+            var buf1 = Math.round(2*lockVal[9]*1000)/1000;
+            var buf2 = Math.round((lockVal[10]+.44)*1000)/1000;
             op += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+3*lockVal[10]+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
             labSize -= 0.5;
             break;
