@@ -196,32 +196,16 @@
     });
     calculator.setState(defaultState);
 
-    calculator.setExpression({
-      id: '76',
-      latex: 'P=10',
-      sliderBounds: { min: 0, max: 30}
-    });
-    calculator.setExpression({
-      id: '82',
-      latex: 's_{oft}=0',
-      sliderBounds: { min: 0, max: 10}
-    });
-    calculator.setExpression({
-      id: '88',
-      latex: 'n_{ipple}=1',
-      sliderBounds: { min: 0, max: 1}
-    });
-    calculator.setExpression({
-      id: '92',
-      latex: 'a_{reola}=0',
-      sliderBounds: { min: 0, max: 1}
-    });
+    calculator.setExpressions([
+      {id: '76', latex: 'P=10', sliderBounds: { min: 0, max: 30}},
+      {id: '82', latex: 's_{oft}=0', sliderBounds: { min: 0, max: 10}},
+      {id: '88', latex: 'n_{ipple}=1', sliderBounds: { min: 0, max: 1}},
+      {id: '92', latex: 'a_{reola}=0', sliderBounds: { min: 0, max: 1}}
+    ]);
 
     let hideId = 61; // h_ide id
     let O_oppId = 46; // original
     let S_oppId = 47; // for screenshot
-
-    let vars = new Array("l_{0}","l_{1}","l_{2}","l_{3}","l_{4}","l_{5}","l_{6}","l_{7}","l_{8}","l_{9}","l_{10}");
 
     let lock = calculator.HelperExpression({latex:'l_{ock}'});
     let lockVal = new Array(-0.038, 0, 0.5, 0.1, 0.05, 25, 0.1, 0, 8.667, 0, 0);
@@ -255,6 +239,10 @@
       preview.onload = null;
     };
 
+    function r(e) {
+      return Math.round(e*1000)/1000;
+    }
+
     function generate() {
       imgFlg = imgType.item(0).checked;
 
@@ -276,8 +264,8 @@
       if(lockVal[2] > 0) { // P > 0
         switch(typeVal) {
           case 2:
-            var buf1 = Math.round((lockVal[10] + 1/6)*1000)/1000;
-            var buf2 = Math.round((lockVal[10] + 1/2)*1000)/1000;
+            var buf1 = r(lockVal[10] + 1/6);
+            var buf2 = r(lockVal[10] + 1/2);
             op += "+"+lockVal[9]*6+"\\frac{\\theta+"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{3}{4}}";
             labSize -= 0.25;
             break;
@@ -288,8 +276,8 @@
             labSize -= 0.4;
             break;
           case 4:
-            var buf1 = Math.round((lockVal[10] + 1/3)*1000)/1000;
-            var buf2 = Math.round((lockVal[10] + 1/2)*1000)/1000;
+            var buf1 = r(lockVal[10] + 1/3);
+            var buf2 = r(lockVal[10] + 1/2);
             op += "+"+lockVal[9]*3+"\\frac{\\left(\\theta+"+buf1+"\\right)}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{11}{4}}";
             labSize -= 0.35;
             break;
@@ -297,8 +285,8 @@
             op += "+"+lockVal[9]+"e^{-10\\theta^{2}}";
             break;
           case 6:
-            var buf1 = Math.round(2*lockVal[9]*1000)/1000;
-            var buf2 = Math.round((lockVal[10]+.44)*1000)/1000;
+            var buf1 = r(2*lockVal[9]);
+            var buf2 = r(lockVal[10]+.44);
             op += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+3*lockVal[10]+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
             labSize -= 0.5;
             break;
@@ -339,8 +327,10 @@
       });
 
       if(imgFlg) {
-        calculator.setExpression({id: O_oppId, lineOpacity: '0'});
-        calculator.setExpression({id: S_oppId, lineOpacity: '1'});
+        calculator.setExpressions([
+          {id: O_oppId, lineOpacity: '0'},
+          {id: S_oppId, lineOpacity: '1'}
+        ]);
       }
       calculator.setExpression({id: hideId, latex: 'h_{ide}=1'});
       
@@ -372,15 +362,10 @@
         secret: true
       });
 
-      if(imgFlg) var buf1 = '\\left(0,-720\\right)';
-      else {
-        var buf1 = '\\left(-800,200\\right)';
-        var buf2 = '\\left(1800,50\\right)';
-        labSize += 0.25;
-      }
+      if(!imgFlg) labSize += 0.25;
       calculator.setExpression({
         id: 'label1',
-        latex: buf1,
+        latex: imgFlg ? '\\left(0,-720\\right)' : '\\left(-800,200\\right)',
         color: 'black',
         label: '`' + (imgFlg ? expr + op : expr) + '`',
         hidden: true,
@@ -392,7 +377,7 @@
       if(!imgFlg) {
         calculator.setExpression({
           id: 'label2',
-          latex: buf2,
+          latex: '\\left(1800,50\\right)',
           color: 'black',
           label: '`' + op + '`',
           hidden: true,
@@ -403,11 +388,9 @@
         });
       }
 
-      if(imgFlg) var buf2 = '\\left(0,-900\\right)';
-      else var buf2 = '\\left(520,-200\\right)';
       calculator.setExpression({
         id: 'domain',
-        latex: buf2,
+        latex: imgFlg ? '\\left(0,-900\\right)' : '\\left(520,-200\\right)',
         color: 'black',
         label: '`\\left\\{-\\frac{\\pi}{2}\\le\\theta\\le\\frac{\\pi}{2}\\right\\}`',
         hidden: true,
@@ -423,16 +406,20 @@
         mathBounds: {left: -1920, right: 1920, bottom: -1080, top: 1080}
       }, function(s) {
         mergeImg.src = s;
-        calculator.removeExpression({id: 'background'});
-        calculator.removeExpression({id: 'label1'});
-        calculator.removeExpression({id: 'label2'});
-        calculator.removeExpression({id: 'domain'});
+        calculator.removeExpressions([
+          {id: 'background'},
+          {id: 'label1'},
+          {id: 'label2'},
+          {id: 'domain'}
+        ]);
         calculator.setExpression({id: S_oppId, lineWidth: 2.5});
         scrollTo(pageX, pageY);
 
-        calculator.setExpression({id: O_oppId, lineOpacity: '1'});
-        calculator.setExpression({id: S_oppId, lineOpacity: '0'});
-        calculator.setExpression({id: '61', latex: 'h_{ide}=0'});
+        calculator.setExpressions([
+          {id: O_oppId, lineOpacity: '1'},
+          {id: S_oppId, lineOpacity: '0'},
+          {id: hideId, latex: 'h_{ide}=0'}
+        ]);
       });
     }
 
