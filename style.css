@@ -1,7 +1,8 @@
     body {
       margin: 0;
-      font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;      font-size: 1rem;
-      font-weight: 400;
+      /*font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;*/
+      font-family: noto-sans-cjk-jp, sans-serif;
+      font-weight: 500;
       line-height: 1.5;
       color: #212529;
       text-align: left;
