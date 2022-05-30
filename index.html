@@ -59,6 +59,9 @@
             <label><input type="radio" id="portrait" name="imgType">縦長</label>
           </div>
           <div class="col">
+            <label><input type="checkbox" id="credit" checked>Add credit</label>
+          </div>
+          <div class="col">
             <button class="btn btn-primary" id="screenshot-button" type="button">
               <span>Generate</span>
             </button>
@@ -330,7 +333,7 @@
         context.font = '25px serif';
         context.fillStyle = 'black';
         context.textAlign = 'right';
-        context.fillText('https://teth-main.github.io/BoobFuncGenerator by @TETH_Main', 1920 - 10, 1080 - 10);
+        if(credit.checked)context.fillText('https://teth-main.github.io/BoobFuncGenerator by @TETH_Main', 1920 - 10, 1080 - 10);
 
         download.href = preview.src = canvas.toDataURL();
       });
