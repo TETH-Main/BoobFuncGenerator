@@ -264,7 +264,7 @@
       imgFlg = imgType.item(0).checked;
 
       let expr = "";
-      let gx = "\\left|x^{2}-\\frac{\\pi^{2}}{4}\\right|^{-\\frac{1}{2}}";
+      let gx = "\\left|\\theta^{2}-\\frac{\\pi^{2}}{4}\\right|^{-\\frac{1}{2}}";
       let mx = lockVal[0]+"e^{-3" + (lockVal[1] === 0 ? "\\theta" : "\\left(\\theta"+c(lockVal[1])+"\\right)") + "^{2}}";
       let lx = "+"+lockVal[2]+"e^{-" + (lockVal[3] === 0 ? "\\theta" : "\\left(\\theta"+c(lockVal[3])+"\\right)") + "^{2}}";
       let hx = lockVal[4] === 0 ? "" : ("+"+lockVal[4]+"e^{-\\left("+ lockVal[5] + (lockVal[6] === 0 ? "\\theta" : "\\left(\\theta"+c(lockVal[6])+"\\right)") + "\\right)^{4}}");
