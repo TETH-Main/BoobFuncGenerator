@@ -281,7 +281,7 @@
           case 2:
             var buf1 = r(lockVal[10] + 1/6);
             var buf2 = r(lockVal[10] + 1/2);
-            op += "+"+lockVal[9]*6+"\\frac{\\theta+"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{3}{4}}";
+            op += "+"+r(lockVal[9]*6)+"\\frac{\\theta+"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{3}{4}}";
             labSize -= 0.25;
             break;
           case 3:
@@ -293,7 +293,8 @@
           case 4:
             var buf1 = r(lockVal[10] + 1/3);
             var buf2 = r(lockVal[10] + 1/2);
-            op += "+"+lockVal[9]*3+"\\frac{\\left(\\theta+"+buf1+"\\right)}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{11}{4}}";
+            if(buf1 > 0) buf1 = "+" + buf1;
+            op += "+"+r(lockVal[9]*3)+"\\frac{\\theta"+buf1+"}{\\left(\\theta+"+buf2+"\\right)^{2}+\\frac{11}{4}}";
             labSize -= 0.35;
             break;
           case 5:
@@ -302,7 +303,7 @@
           case 6:
             var buf1 = r(2*lockVal[9]);
             var buf2 = r(lockVal[10]+.44);
-            op += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+3*lockVal[10]+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
+            op += "+"+buf1+"e^{-"+ (lockVal[10] === 0 ? "\\theta" : "\\left(\\theta+"+lockVal[10]+"\\right)") +"^{2}}-"+r(3*lockVal[10])+"e^{-10"+ (lockVal[10] === -.44 ? "\\theta" : "\\left(\\theta+"+buf2+"\\right)" ) +"^{2}}";
             labSize -= 0.5;
             break;
         }
@@ -400,7 +401,7 @@
           hidden: true,
           showLabel: true,
           secret: true,
-          labelSize: '0' + labSize + (typeVal === 6 ? -0.25 : 0),
+          labelSize: '0' + labSize,
           labelOrientation: 'left'
         });
       }
